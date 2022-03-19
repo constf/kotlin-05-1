@@ -1,6 +1,6 @@
 package ru.netology.kotlin051
 
-object WallService {
+class WallService {
     var posts: Array<Post> = emptyArray<Post>()
 
     fun add(post: Post): Post {
@@ -31,5 +31,11 @@ object WallService {
     private fun getNextId(): Int {
         return ++idCounter
     }
+
+    internal fun clearData(){
+        posts = emptyArray()
+        idCounter = 0
+    }
+
 }
 
