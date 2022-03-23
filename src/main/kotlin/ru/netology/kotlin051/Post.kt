@@ -8,17 +8,20 @@ data class Post(
     val fromId: Int = 0,
     val createdBy: Int = 0,
     val date: Int = System.currentTimeMillis().toInt(),
-    var text: String = "Enter your post here...",
-    val replyOwnerId: Int = 0,
-    val replyPostId: Int = 0,
+    var text: String? = "Enter your post here...",
+    val replyOwnerId: Int? = null,
+    val replyPostId: Int? = null,
     val friendsOnly: Boolean = false,
-    var comments: Comments = Comments(),
-    var copyright: Copyright = Copyright(),
-    var likes: Likes = Likes(),
-    var reposts: Reposts = Reposts(),
-    var views: Views = Views(),
+    var comments: Comments? = null,
+    var copyright: Copyright? = null,
+    var likes: Likes? = null,
+    var reposts: Reposts? = null,
+    var views: Views? = null,
     var postType: PostType = PostType.post,
-    val signerId: Int = 0,
+    var postSource: PostSource? = null,
+    var geo: Geo? = null,
+    val signerId: Int? = null,
+    var copyHistory: Array<Post>? = null,
     val canPin: Boolean = true,
     val canDelete: Boolean = true,
     val canEdit: Boolean = true,
@@ -73,3 +76,31 @@ data class Donut(
 )
 
 enum class DonutEditMode {all, duration}
+
+data class PostSource(
+    var type: String,
+    var platform: String,
+    var data: String?,
+    var url: String
+)
+
+data class Geo(
+    var type: String,
+    var coordinates: String,
+    var place: Place? = null
+)
+
+data class Place(
+    val id: Int,
+    val title: String,
+    val lattitude: Int,
+    val longitude: Int,
+    val created: Int,
+    var icon: String?,
+    var checkins: Int? = null,
+    var updated: Int? = null,
+    val type: Int,
+    val country: Int,
+    val city: Int,
+    val address: String? = null
+)
