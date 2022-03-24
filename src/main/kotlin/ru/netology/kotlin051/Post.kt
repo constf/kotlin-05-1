@@ -14,11 +14,12 @@ data class Post(
     val friendsOnly: Boolean = false,
     var comments: Comments? = null,
     var copyright: Copyright? = null,
-    var likes: Likes? = null,
+    var likes: LikesPost? = null,
     var reposts: Reposts? = null,
     var views: Views? = null,
     var postType: PostType = PostType.post,
     var postSource: PostSource? = null,
+    val attachments: Array<Attachment>? = null,
     var geo: Geo? = null,
     val signerId: Int? = null,
     var copyHistory: Array<Post>? = null,
@@ -48,7 +49,7 @@ data class Copyright(
 )
 
 
-data class Likes(
+data class LikesPost(
     var count: Int = 0,
     var userLikes: Boolean = true,
     var canLike: Boolean = true,
