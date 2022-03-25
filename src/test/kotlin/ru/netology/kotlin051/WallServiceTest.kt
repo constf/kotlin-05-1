@@ -59,5 +59,43 @@ class WallServiceTest {
         assertFalse(result)
     }
 
+    @Test
+    fun createComment_pass() {
+        // Arrange
+        val ws = WallService()
+        ws.clearData()
+
+        ws.add( Post(ownerId = 123) )
+        ws.add( Post(ownerId = 124) )
+        ws.add( Post(ownerId = 125) )
+
+        val comment: Comment = Comment(1, 15, 2)
+
+        // Act
+        ws.createComment(comment)
+
+        // Assert
+        assertFalse(ws.comments.isEmpty())
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun createComment_fail() {
+        // Arrange
+        val ws = WallService()
+        ws.clearData()
+
+        ws.add( Post(ownerId = 123) )
+        ws.add( Post(ownerId = 124) )
+        ws.add( Post(ownerId = 125) )
+
+        val comment: Comment = Comment(1, 15, 12)
+
+        // Act
+        ws.createComment(comment)
+
+        // Assert
+        // In @Test invocation
+    }
+
 
 }
